@@ -1571,7 +1571,6 @@ lib.composeManyExtensions [
 
           inherit (pkgs) tk tcl wayland qhull;
           inherit (pkgs.xorg) libX11;
-          inherit (pkgs.darwin.apple_sdk.frameworks) Cocoa;
           mpl39 = lib.versionAtLeast prev.matplotlib.version "3.9.0";
           isSrc = !(old.src.isWheel or false);
         in
@@ -1582,8 +1581,6 @@ lib.composeManyExtensions [
             pkgs.which
           ] ++ lib.optionals enableGhostscript [
             pkgs.ghostscript
-          ] ++ lib.optionals stdenv.isDarwin [
-            Cocoa
           ] ++ lib.optionals (lib.versionAtLeast prev.matplotlib.version "3.7.0") [
             final.pybind11
           ];
